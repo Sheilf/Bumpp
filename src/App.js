@@ -1,16 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { auth } from './constants/firebase-roles';
+import { Flexbox } from './styles/inline-react';
 
-function App() {
-  return (
-    <main>
+/*
+Log into app and get verified as a user or admin.
+*/
+class App extends React.Component{
 
-      Welcome to Bumpp.
+  constructor(){
+    super()
+    this.state={
 
-      
-    </main>
-  );
+    }
+  }
+
+  componentDidMount(){
+
+  }
+  render(){
+    return (
+      <main id="App" style={Flexbox.flexColumnShift}>
+  
+        <p> Welcome to Bumpp. </p>
+
+        <button>
+          Login
+        </button>
+      </main>
+    );
+  }
+
 }
 
 export default App;
