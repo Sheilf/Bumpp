@@ -1,12 +1,17 @@
 /*
+export Flexbox
+export BoxShadows
+*
+
+
+/*
 Centered : Centered along X & Y
 Shifted : Shifted to center along X.
 
 */
 
-
-//Rows
 export const Flexbox = {
+    //Rows
     flexRow: {
         boxSizing: 'border-box',
         display: 'flex',
