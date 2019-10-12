@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { db, auth } from '../../constants/firebase-roles'
+import { db, auth, functions } from '../../constants/firebase-roles'
 import {Flexbox} from '../../styles/inline-react';
 import './Login.css';
 
@@ -19,10 +19,16 @@ class Login extends React.Component{
     componentDidMount(){
         auth.signOut();
         auth.onAuthStateChanged(user=>{
-            if(user.email === "livio@codemoji.com")
-                this.props.history.push('/master')
-            
-            this.props.history.push("/connect")
+            if(user){
+                user.getIdTokenResult().then(idTokenResult =>{
+                   if(idTokenResult.claims.isMaster)
+                    this.props.history.push("/master")
+                   if(idTokenResult.claims.isAdmin)
+                    this.props.history.push("/dashboard")
+                   if(idTokenResult.claims.isUser)
+                    this.props.history.push("/connect")
+                })
+            }
         })
     }
 
@@ -35,9 +41,17 @@ class Login extends React.Component{
     }
 
     handleLogin(event){
+  
        event.preventDefault();
        console.log(this.state.email, this.state.password)
-       auth.signInWithEmailAndPassword(this.state.email, this.state.password).catch(error=>{
+       auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(user=>{
+            console.log(user);
+            let createMaster = functions.httpsCallable('addMasterRole');
+            createMaster({ email: this.state.email}).then(user_cred=>{
+                console.log(user_cred)
+            })
+       })
+       .catch(error=>{
            console.log(error.message);
        })   
 
