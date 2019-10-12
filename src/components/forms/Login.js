@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { db, auth, functions } from '../../constants/firebase-roles'
+import { auth, functions } from '../../constants/firebase-roles'
 import {Flexbox} from '../../styles/inline-react';
 import './Login.css';
 
@@ -45,11 +45,11 @@ class Login extends React.Component{
        event.preventDefault();
        console.log(this.state.email, this.state.password)
        auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(user=>{
-            console.log(user);
-            let createMaster = functions.httpsCallable('addMasterRole');
-            createMaster({ email: this.state.email}).then(user_cred=>{
-                console.log(user_cred)
-            })
+            // console.log(user);
+            // let createMaster = functions.httpsCallable('addMasterRole');
+            // createMaster({ email: this.state.email}).then(user_cred=>{
+            //     console.log(user_cred)
+            // })
        })
        .catch(error=>{
            console.log(error.message);

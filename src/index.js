@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { ConnectView, MasterView, AdminView} from './containers/views'
+import { View } from './containers/views'
+import Master from './components/views/Master';
 import * as serviceWorker from './serviceWorker';
 
 import {BrowserRouter, Route} from 'react-router-dom';
@@ -10,9 +11,9 @@ import {BrowserRouter, Route} from 'react-router-dom';
 ReactDOM.render(
     <BrowserRouter>
         <Route exact path="/" component={App}></Route>
-        <Route exact path="/connect" component={ConnectView}></Route>
-        <Route exact path="/master" component={MasterView}></Route>
-        <Route exact path="/dashboard" component={AdminView}></Route>
+        <Route exact path="/connect" component={View}></Route>
+        <Route exact path="/master" component={Master}></Route>
+        <Route exact path="/dashboard" component={View}></Route>
     </BrowserRouter>, 
     document.getElementById('root')
 

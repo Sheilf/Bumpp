@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { auth } from './constants/firebase-roles';
 import { Flexbox } from './styles/inline-react';
 import Login from './components/forms/Login';
 

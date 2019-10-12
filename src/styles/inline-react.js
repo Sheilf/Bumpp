@@ -1,16 +1,14 @@
 /*
 export Flexbox
 export BoxShadows
-*
-
-
-/*
-Centered : Centered along X & Y
-Shifted : Shifted to center along X.
-
 */
 
 export const Flexbox = {
+
+    //Centered : Centered along X & Y
+    //Shifted : Shifted to center along X.
+
+
     //Rows
     flexRow: {
         boxSizing: 'border-box',
@@ -81,3 +79,8 @@ export const Flexbox = {
         alignItems: 'center'
     }
 }
+
+export const BoxShadows = {
+
+
+};
