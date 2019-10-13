@@ -11,9 +11,9 @@ import {BrowserRouter, Route} from 'react-router-dom';
 ReactDOM.render(
     <BrowserRouter>
         <Route exact path="/" component={App}></Route>
-        <Route exact path="/connect" component={View}></Route>
+        <Route exact path="/user" component={View}></Route>
         <Route exact path="/master" component={Master}></Route>
-        <Route exact path="/dashboard" component={View}></Route>
+        <Route exact path="/admin" component={View}></Route>
     </BrowserRouter>, 
     document.getElementById('root')
 

@@ -18,7 +18,7 @@ class Master extends React.Component{
     render(){
         return(
             <View>  
-                Create a Role and send an email invite to login.
+           
                 <CreateRole />
             </View>
         )
