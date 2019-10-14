@@ -10,6 +10,7 @@ class Master extends React.Component{
         super(props);
         this.state={
             valid: false
+            
         }
 
     }
@@ -21,13 +22,9 @@ class Master extends React.Component{
             if(user){
                 const role = this.props.history.location.pathname.substr(1)
                 console.log("LOC", role)
-                if(await checkPrivileges(user, role)){
-                   this.setState({
-                        valid: true
-                    })
-                }else{
-                    this.setState({valid: false})
-                }
+                this.setState({
+                    valid: await checkPrivileges(user, role)
+                })
 
             }
 
