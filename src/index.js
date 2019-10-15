@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { View } from './containers/views'
 import Master from './components/views/Master';
+import Admin from './components/views/Admin'
 import * as serviceWorker from './serviceWorker';
 
 import {BrowserRouter, Route} from 'react-router-dom';
@@ -13,7 +14,7 @@ ReactDOM.render(
         <Route exact path="/" component={App}></Route>
         <Route exact path="/user" component={View}></Route>
         <Route exact path="/master" component={Master}></Route>
-        <Route exact path="/admin" component={View}></Route>
+        <Route exact path="/admin" component={Admin}></Route>
     </BrowserRouter>, 
     document.getElementById('root')
 

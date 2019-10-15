@@ -3,13 +3,14 @@ import { View } from '../../containers/views';
 import CreateRole from '../forms/CreateRole';
 import { auth } from '../../constants/firebase-roles';
 import { checkPrivileges } from '../../services/auth_services';
+import { BadPrivilege, Loading} from './Preloaders'
 import '../../firebase-config';
 
 class Master extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            valid: false
+            valid: 'Loading'
             
         }
 
@@ -17,11 +18,9 @@ class Master extends React.Component{
 
     componentDidMount(){
         //determine role by claim: badclaim = "Bad claim, go back"  
-        auth.onAuthStateChanged(async user=>{
-            
+        auth.onAuthStateChanged(async user=>{       
             if(user){
                 const role = this.props.history.location.pathname.substr(1)
-                console.log("LOC", role)
                 this.setState({
                     valid: await checkPrivileges(user, role)
                 })
@@ -31,18 +30,20 @@ class Master extends React.Component{
         })
     }
     render(){
-        console.log(this.state.valid)
-        if(this.state.valid == false){
-            return(
+        return (
+            this.state.valid === "Loading" ? (<View><Loading /></View>)
+            :
+            this.state.valid === false ? (
                 <View>
-                    You do not have access to view this.
+                    <BadPrivilege />
                 </View>
             )
-        }
-        return(
-            <View>  
-                <CreateRole />
-            </View>
+            :
+            (
+                <View>  
+                    <CreateRole />
+                </View>
+            )
         )
     }
 }
